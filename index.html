@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TeamRoza Secret Santa 2025</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tangerine:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            /* Background GIF */
+            background-image: url('https://i.pinimg.com/originals/da/8a/f5/da8af57be25f0d286cdac0bcef26f184.gif');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            
+            /* Centering */
+            display: flex;
+            flex-direction: column;
+            align-items: center; 
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            
+            color: white; 
+            text-align: center;
+            font-family: sans-serif;
+        }
+
+        /* Applying the New Title and Font */
+        .page-title {
+            font-family: "Tangerine", cursive;
+            font-weight: 700;
+            font-style: normal;
+            font-size: 8em;
+            color: gold; 
+            margin-top: 0;
+            text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.8);
+            line-height: 1;
+        }
+
+        /* Style for the main content box to make it readable */
+        #initial-prompt, #result-area {
+            background-color: rgba(0, 0, 0, 0.7); 
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 90%;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5); 
+        }
+        
+        #drawButton {
+            border-radius: 5px;
+        }
+        
+        #recipientName {
+             font-family: "Tangerine", cursive;
+             font-weight: 700;
+             font-size: 3em !important; 
+             color: #A0C22B !important; 
+        }
+        
+        /* --- NEW SPONSOR STYLES --- */
+        #sponsors {
+            margin-top: 50px; /* Space above sponsors */
+            padding: 20px 0;
+            width: 90%;
+            /* Make the background slightly transparent to see the GIF */
+            background-color: rgba(0, 0, 0, 0.5); 
+            border-radius: 10px;
+        }
+
+        .sponsor-list {
+            display: flex;
+            flex-wrap: wrap; /* Allows logos to wrap on smaller screens */
+            justify-content: center;
+            align-items: center;
+            gap: 20px; /* Space between logos */
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sponsor-logo img {
+            max-height: 50px; /* Control the height of the logos */
+            width: auto;
+            border-radius: 5px;
+            background-color: white; /* Ensure visibility for logos with light backgrounds */
+            padding: 5px;
+            transition: transform 0.3s ease; /* Subtle hover effect */
+        }
+        
+        .sponsor-logo img:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <h1 class="page-title">TeamRoza Secret Santa 2025</h1>
+
+    <div id="initial-prompt">
+        <p style="font-size: 1.1em;">Click the button below to discover who you will be buying a gift for!</p>
+        <button id="drawButton" onclick="startExchange()" style="padding: 10px 20px; font-size: 1.2em; background-color: #008000; color: white; border: none; cursor: pointer; border-radius: 5px;">
+            Reveal My Recipient!
+        </button>
+    </div>
+
+    <div id="result-area" style="display: none;">
+    </div>
+    
+    <div id="sponsors">
+        <p style="font-size: 1.2em; font-weight: bold; color: silver; margin-bottom: 15px;">
+            Proudly Sponsored By
+        </p>
+        <ul class="sponsor-list">
+            <li class="sponsor-logo"><img src="pt.jpg" alt="Sponsor Logo pt"></li>
+            <li class="sponsor-logo"><img src="je.jpg" alt="Sponsor Logo je"></li>
+            <li class="sponsor-logo"><img src="wt.png" alt="Sponsor Logo wt"></li>
+            <li class="sponsor-logo"><img src="rc.jpg" alt="Sponsor Logo rc"></li>
+            <li class="sponsor-logo"><img src="bn.jpg" alt="Sponsor Logo bn"></li>
+            <li class="sponsor-logo"><img src="xv.png" alt="Sponsor Logo xv"></li>
+        </ul>
+    </div>
+    <script src="script.js"></script> 
+</body>
+</html>
