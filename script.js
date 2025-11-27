@@ -43,7 +43,7 @@ function displayResult(recipientName) {
     const recipientNameEl = document.getElementById("recipientName");
     recipientNameEl.innerHTML = `
         <span style="font-size: 2.5em; font-weight: bold; color:#A0C22B; font-family: 'Tangerine', cursive;">
-            ${recipientName} Zia, Bella and Haena 😄
+            ${recipientName}, Zia, Bella and Haena 😄
         </span>
     `;
     
