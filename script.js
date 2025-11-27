@@ -29,35 +29,29 @@ function displayError(message) {
 }
 
 function displayResult(recipientName) {
-    // Hide loading, populate name, and show the final reveal container
-    document.getElementById("loading-animation").style.display = "none";
-    
-    const recipientNameEl = document.getElementById("recipientName");
-    // Updated to match the desired text style
-    recipientNameEl.innerHTML = `<span style="font-size: 2.5em; font-weight: bold; color:#A0C22B; font-family: 'Tangerine', cursive;">${recipientName} and Zia, Bella and Haena 😄</span>`;
-    
-    document.getElementById("final-reveal").style.display = "block";
+    document.getElementById("initial-prompt").style.display = "none";
+    const result = document.getElementById("result-area");
+    result.style.display = "block";
+
+    result.innerHTML = `
+        <h2> You are the Secret Santa for:</h2>
+        <p id="recipientName" style="font-size: 2.5em; font-weight: bold; color:#A0C22B; font-family: 'Tangerine', cursive;">
+            ${recipientName} and Zia, Bella and Haena 😄
+        </p>
+    `;
 }
 
 async function startExchange() {
     const btn = document.getElementById("drawButton");
     btn.disabled = true;
-    btn.textContent = "Checking Santa's List...";
+    btn.textContent = "Drawing...";
 
     const giverHash = getGiverHashFromUrl();
 
-    if (!giverHash) {
-        return displayError("Missing unique key in the link.");
+    // Check done in loadInitialGreeting, but keeping the error logic for safety
+    if (!giverHash || !HASH_TO_NAME[giverHash]) {
+        return displayError("Missing or invalid unique key in the link.");
     }
-
-    if (!HASH_TO_NAME[giverHash]) {
-        return displayError("Invalid unique key.");
-    }
-
-    // Show the result area and the loading animation
-    document.getElementById("initial-prompt").style.display = "none";
-    document.getElementById("result-area").style.display = "block";
-    document.getElementById("loading-animation").style.display = "block";
 
     // Load pairings.json
     try {
@@ -71,13 +65,40 @@ async function startExchange() {
         }
 
         const recipientName = HASH_TO_NAME[recipientHash];
-        
-        // Magical Christmas Delay (3 seconds)
-        setTimeout(() => {
-            displayResult(recipientName);
-        }, 3000); 
+        displayResult(recipientName);
 
     } catch (err) {
-        displayError("Error loading pairings file.");
+        displayError("Error loading pairings file. Please ensure 'pairings.json' is deployed.");
     }
 }
+
+
+// --- New Initialization Logic ---
+
+function loadInitialGreeting() {
+    const giverHash = getGiverHashFromUrl();
+    const greetingEl = document.getElementById("greetingMessage");
+    const drawButton = document.getElementById("drawButton");
+    
+    if (!giverHash) {
+        // No hash provided, disable button and show error
+        greetingEl.innerHTML = "⚠️ **ERROR:** Please use the complete Secret Santa link provided to you.";
+        drawButton.disabled = true;
+        return;
+    }
+
+    const giverName = HASH_TO_NAME[giverHash];
+    
+    if (!giverName) {
+        // Invalid hash, disable button and show error
+        greetingEl.innerHTML = "⚠️ **ERROR:** The unique key in your link is invalid.";
+        drawButton.disabled = true;
+        return;
+    }
+    
+    // Personalize the greeting with bold name
+    greetingEl.innerHTML = `Hello **${giverName}**! Click the button below to discover who you will be buying a gift for!`;
+}
+
+// Run the initialization function when the script loads
+document.addEventListener('DOMContentLoaded', loadInitialGreeting);

@@ -54,60 +54,41 @@
             border-radius: 5px;
         }
         
-        /* Styles for Recipient Name and Animation */
         #recipientName {
              font-family: "Tangerine", cursive;
              font-weight: 700;
-             /* Increased size for impact on the reveal */
-             font-size: 4em !important; 
-             color: #A0C22B !important; 
-             margin-top: 5px; 
-             margin-bottom: 5px;
+             font-size: 3em !important; 
+             color: #A0C2B !important; 
         }
         
-        /* CSS for the Magical Spinner */
-        #spinner {
-            border: 8px solid rgba(255, 255, 255, 0.3); /* Light border */
-            border-top: 8px solid gold; /* The spinning color */
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            animation: spin 1.5s linear infinite; /* The animation property */
-            margin: 20px auto; /* Center the spinner */
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* --- SPONSOR STYLES --- */
+        /* --- NEW SPONSOR STYLES --- */
         #sponsors {
-            margin-top: 50px; 
+            margin-top: 50px; /* Space above sponsors */
             padding: 20px 0;
             width: 90%;
+            /* Make the background slightly transparent to see the GIF */
             background-color: rgba(0, 0, 0, 0.5); 
             border-radius: 10px;
         }
 
         .sponsor-list {
             display: flex;
-            flex-wrap: wrap; 
+            flex-wrap: wrap; /* Allows logos to wrap on smaller screens */
             justify-content: center;
             align-items: center;
-            gap: 20px; 
+            gap: 20px; /* Space between logos */
             list-style: none;
             padding: 0;
             margin: 0;
         }
 
         .sponsor-logo img {
-            max-height: 50px; 
+            max-height: 50px; /* Control the height of the logos */
             width: auto;
             border-radius: 5px;
-            background-color: white; 
+            background-color: white; /* Ensure visibility for logos with light backgrounds */
             padding: 5px;
-            transition: transform 0.3s ease; 
+            transition: transform 0.3s ease; /* Subtle hover effect */
         }
         
         .sponsor-logo img:hover {
@@ -120,22 +101,13 @@
     <h1 class="page-title">TeamRoza Secret Santa 2025</h1>
 
     <div id="initial-prompt">
-        <p style="font-size: 1.1em;">Click the button below to discover who you will be buying a gift for!</p>
+        <p id="greetingMessage" style="font-size: 1.1em;"></p>
         <button id="drawButton" onclick="startExchange()" style="padding: 10px 20px; font-size: 1.2em; background-color: #008000; color: white; border: none; cursor: pointer; border-radius: 5px;">
             Reveal My Recipient!
         </button>
     </div>
 
     <div id="result-area" style="display: none;">
-        <div id="loading-animation" style="display: none;">
-            <p style="font-size: 1.5em; color: silver;">🎁 Santa's Sleigh is on the way...</p>
-            <div id="spinner"></div> </div>
-        
-        <div id="final-reveal" style="display: none;">
-            <h2> You are the Secret Santa for:</h2>
-            <p id="recipientName"></p>
-            <p>This is your assignment. Keep it secret! Shhh! Don't tell anyone! 😊</p>
-        </div>
     </div>
     
     <div id="sponsors">
@@ -148,7 +120,7 @@
             <li class="sponsor-logo"><img src="wt.png" alt="Sponsor Logo wt"></li>
             <li class="sponsor-logo"><img src="rc.jpg" alt="Sponsor Logo rc"></li>
             <li class="sponsor-logo"><img src="bn.jpg" alt="Sponsor Logo bn"></li>
-            <li class="sponsor-logo"><img src="xv2.png" alt="Sponsor Logo xv"></li>
+            <li class="sponsor-logo"><img src="xv.png" alt="Sponsor Logo xv"></li>
         </ul>
     </div>
     <script src="script.js"></script> 
