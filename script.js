@@ -1,13 +1,13 @@
 const HASH_LENGTH = 5;
 const ALL_NAMES = ["Eko","Jhen","James","Jel","Renz","Kristel","Somer"];
 const NAME_TO_HASH = {
-    "Eko": "d3f0c",
-    "Jhen": "73532",
-    "James": "632a4",
-    "Jel": "a793a",
-    "Renz": "46862",
-    "Kristel": "2711b",
-    "Somer": "1a83e"
+    "Eko": 				"d3f0c",
+    "Jhen": 				"73532",
+    "James":				 "632a4",
+    "Jel": 				"a793a",
+    "Renz": 				"46862",
+    "Kristel": 			"2711b",
+    "Somer": 			"1a83e"
 };
 
 const HASH_TO_NAME = Object.fromEntries(
@@ -29,41 +29,20 @@ function displayError(message) {
 }
 
 function displayResult(recipientName) {
-    const result = document.getElementById("result-area");
-    result.style.display = "block";
-
-    result.innerHTML = `
-        <h2>You are the Secret Santa for:</h2>
-        <p id="recipientName" style="
-            font-size: 2.5em; 
-            font-weight: bold; 
-            color:#A0C22B; 
-            font-family: 'Tangerine', cursive;
-            animation: fadeIn 2s ease-out;
-        ">
-            ${recipientName} and Zia, Bella and Haena 😄
-        </p>
-        <p>This is your assignment. Keep it secret!</p>
-    `;
+    // Hide loading, populate name, and show the final reveal container
+    document.getElementById("loading-animation").style.display = "none";
+    
+    const recipientNameEl = document.getElementById("recipientName");
+    // Updated to match the desired text style
+    recipientNameEl.innerHTML = `<span style="font-size: 2.5em; font-weight: bold; color:#A0C22B; font-family: 'Tangerine', cursive;">${recipientName} and Zia, Bella and Haena 😄</span>`;
+    
+    document.getElementById("final-reveal").style.display = "block";
 }
-
-// Fade-in animation for the name
-const fadeStyle = document.createElement("style");
-fadeStyle.innerHTML = `
-@keyframes fadeIn {
-    from { opacity:0; transform:scale(0.9); }
-    to { opacity:1; transform:scale(1); }
-}`;
-document.head.appendChild(fadeStyle);
-
 
 async function startExchange() {
     const btn = document.getElementById("drawButton");
-    const initialPrompt = document.getElementById("initial-prompt");
-    const animation = document.getElementById("animation-container");
-
     btn.disabled = true;
-    btn.textContent = "Drawing...";
+    btn.textContent = "Checking Santa's List...";
 
     const giverHash = getGiverHashFromUrl();
 
@@ -75,8 +54,13 @@ async function startExchange() {
         return displayError("Invalid unique key.");
     }
 
+    // Show the result area and the loading animation
+    document.getElementById("initial-prompt").style.display = "none";
+    document.getElementById("result-area").style.display = "block";
+    document.getElementById("loading-animation").style.display = "block";
+
+    // Load pairings.json
     try {
-        // Load pairings.json
         const response = await fetch("pairings.json", { cache: "no-store" });
         const pairings = await response.json();
 
@@ -87,16 +71,11 @@ async function startExchange() {
         }
 
         const recipientName = HASH_TO_NAME[recipientHash];
-
-        // ---- START ANIMATION ----
-        initialPrompt.style.display = "none";
-        animation.style.display = "block";
-
-        // Show name after animation
+        
+        // Magical Christmas Delay (3 seconds)
         setTimeout(() => {
-            animation.style.display = "none";
             displayResult(recipientName);
-        }, 2500); // 2.5 seconds animation
+        }, 3000); 
 
     } catch (err) {
         displayError("Error loading pairings file.");

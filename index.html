@@ -54,115 +54,66 @@
             border-radius: 5px;
         }
         
+        /* Styles for Recipient Name and Animation */
         #recipientName {
              font-family: "Tangerine", cursive;
              font-weight: 700;
-             font-size: 3em !important; 
+             /* Increased size for impact on the reveal */
+             font-size: 4em !important; 
              color: #A0C22B !important; 
+             margin-top: 5px; 
+             margin-bottom: 5px;
         }
         
-        /* --- NEW SPONSOR STYLES --- */
+        /* CSS for the Magical Spinner */
+        #spinner {
+            border: 8px solid rgba(255, 255, 255, 0.3); /* Light border */
+            border-top: 8px solid gold; /* The spinning color */
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 1.5s linear infinite; /* The animation property */
+            margin: 20px auto; /* Center the spinner */
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* --- SPONSOR STYLES --- */
         #sponsors {
-            margin-top: 50px; /* Space above sponsors */
+            margin-top: 50px; 
             padding: 20px 0;
             width: 90%;
-            /* Make the background slightly transparent to see the GIF */
             background-color: rgba(0, 0, 0, 0.5); 
             border-radius: 10px;
         }
 
         .sponsor-list {
             display: flex;
-            flex-wrap: wrap; /* Allows logos to wrap on smaller screens */
+            flex-wrap: wrap; 
             justify-content: center;
             align-items: center;
-            gap: 20px; /* Space between logos */
+            gap: 20px; 
             list-style: none;
             padding: 0;
             margin: 0;
         }
 
         .sponsor-logo img {
-            max-height: 50px; /* Control the height of the logos */
+            max-height: 50px; 
             width: auto;
             border-radius: 5px;
-            background-color: white; /* Ensure visibility for logos with light backgrounds */
+            background-color: white; 
             padding: 5px;
-            transition: transform 0.3s ease; /* Subtle hover effect */
+            transition: transform 0.3s ease; 
         }
         
         .sponsor-logo img:hover {
             transform: scale(1.05);
         }
-		/* --- GIFT BOX ANIMATION --- */
-
-#animation-container {
-    margin-top: 30px;
-}
-
-.gift-box {
-    position: relative;
-    width: 180px;
-    height: 160px;
-    margin: 0 auto;
-    animation: shake 1s ease-in-out;
-}
-
-@keyframes shake {
-    0% { transform: rotate(0deg); }
-    20% { transform: rotate(2deg); }
-    40% { transform: rotate(-2deg); }
-    60% { transform: rotate(1deg); }
-    80% { transform: rotate(-1deg); }
-    100% { transform: rotate(0deg); }
-}
-
-.gift-box .box {
-    width: 100%;
-    height: 100%;
-    background: red;
-    border: 5px solid gold;
-    border-radius: 10px;
-}
-
-.gift-box .lid {
-    position: absolute;
-    top: -40px;
-    width: 100%;
-    height: 40px;
-    background: red;
-    border: 5px solid gold;
-    border-bottom: none;
-    border-radius: 10px 10px 0 0;
-    transform-origin: center bottom;
-    animation: popLid 1s ease-in-out forwards;
-    animation-delay: 1s;
-}
-
-@keyframes popLid {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(-70deg) translateY(-20px); }
-}
-
-.sparkles {
-    position: absolute;
-    top: -30px;
-    left: 50%;
-    width: 5px;
-    height: 5px;
-    background: gold;
-    border-radius: 50%;
-    transform: translateX(-50%);
-    opacity: 0;
-    animation: sparkle 1.2s ease-out forwards;
-    animation-delay: 1.2s;
-}
-
-@keyframes sparkle {
-    0% { opacity: 0; transform: translate(-50%, 0) scale(1); }
-    50% { opacity: 1; transform: translate(-50%, -40px) scale(2); }
-    100% { opacity: 0; transform: translate(-50%, -70px) scale(0.5); }
-}
+		
     </style>
 </head>
 <body>
@@ -176,14 +127,17 @@
     </div>
 
     <div id="result-area" style="display: none;">
+        <div id="loading-animation" style="display: none;">
+            <p style="font-size: 1.5em; color: silver;">🎁 Santa's Sleigh is on the way...</p>
+            <div id="spinner"></div> </div>
+        
+        <div id="final-reveal" style="display: none;">
+            <h2> You are the Secret Santa for:</h2>
+            <p id="recipientName"></p>
+            <p>This is your assignment. Keep it secret! Shhh! Don't tell anyone! 😊</p>
+        </div>
     </div>
-    <div id="animation-container" style="display:none;">
-    <div class="gift-box">
-        <div class="lid"></div>
-        <div class="box"></div>
-        <div class="sparkles"></div>
-    </div>
-</div>
+    
     <div id="sponsors">
         <p style="font-size: 1.2em; font-weight: bold; color: silver; margin-bottom: 15px;">
             Proudly Sponsored By
