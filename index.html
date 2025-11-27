@@ -54,63 +54,31 @@
             border-radius: 5px;
         }
         
-        /* Styles for Recipient Name and Animation */
         #recipientName {
              font-family: "Tangerine", cursive;
              font-weight: 700;
+             /* Made the reveal text slightly larger for impact */
              font-size: 4em !important; 
              color: #A0C22B !important; 
              margin-top: 5px; 
              margin-bottom: 5px;
         }
         
-        /* --- NEW DOCTOR STRANGE PORTAL CSS --- */
+        /* CSS for the Magical Spinner (Restored) */
         #spinner {
-            width: 100px;
-            height: 100px;
-            margin: 30px auto;
-            position: relative;
-            transform: scale(1.5); /* Make it a bit bigger */
-        }
-        
-        #spinner:before,
-        #spinner:after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
+            border: 8px solid rgba(255, 255, 255, 0.3); /* Light border */
+            border-top: 8px solid gold; /* The spinning color */
             border-radius: 50%;
-            border: 6px solid transparent;
+            width: 60px;
+            height: 60px;
+            animation: spin 1.5s linear infinite; /* The animation property */
+            margin: 20px auto; /* Center the spinner */
         }
 
-        /* Inner Swirl (Orange/Fire) */
-        #spinner:before {
-            border-top-color: #ff9900; 
-            border-right-color: #ffcc00; 
-            animation: portal-spin-inner 1.5s linear infinite;
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
-
-        /* Outer Swirl (Yellow/Spark) */
-        #spinner:after {
-            border-bottom-color: #ffcc00;
-            border-left-color: #ff9900;
-            /* Slightly offset animation for a layered swirl effect */
-            animation: portal-spin-outer 2s linear infinite reverse; 
-            transform: scale(1.2); 
-        }
-
-        @keyframes portal-spin-inner {
-            0% { transform: rotate(0deg); filter: blur(0px); }
-            50% { filter: blur(1px); } /* Slight blur for fire effect */
-            100% { transform: rotate(360deg); filter: blur(0px); }
-        }
-        
-        @keyframes portal-spin-outer {
-            0% { transform: rotate(0deg) scale(1.2); filter: blur(0px); }
-            50% { filter: blur(1px); }
-            100% { transform: rotate(-360deg) scale(1.2); filter: blur(0px); }
-        }
-        /* --- END NEW PORTAL CSS --- */
 
         /* --- SPONSOR STYLES --- */
         #sponsors {
@@ -152,6 +120,7 @@
         <source src="bg.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
+
     <h1 class="page-title">TeamRoza Secret Santa 2025</h1>
 
     <div id="initial-prompt">
@@ -163,7 +132,7 @@
 
     <div id="result-area" style="display: none;">
         <div id="loading-animation" style="display: none;">
-            <p style="font-size: 1.5em; color: silver;">Santa's Sleigh is opening a portal...</p>
+            <p style="font-size: 1.5em; color: silver;">Santa's Sleigh is on the way...</p>
             <div id="spinner"></div> </div>
         
         <div id="final-reveal" style="display: none;">
@@ -182,7 +151,7 @@
             <li class="sponsor-logo"><img src="wt.png" alt="Sponsor Logo wt"></li>
             <li class="sponsor-logo"><img src="rc.jpg" alt="Sponsor Logo rc"></li>
             <li class="sponsor-logo"><img src="bn.jpg" alt="Sponsor Logo bn"></li>
-            <li class="sponsor-logo"><img src="xv.png" alt="Sponsor Logo xv"></li>
+            <li class="sponsor-logo"><img src="xv2.png" alt="Sponsor Logo xv"></li>
         </ul>
     </div>
     <script src="script.js"></script> 
