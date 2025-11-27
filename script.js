@@ -43,7 +43,7 @@ function displayResult(recipientName) {
     const recipientNameEl = document.getElementById("recipientName");
     recipientNameEl.innerHTML = `
         <span style="font-size: 2.5em; font-weight: bold; color:#A0C22B; font-family: 'Tangerine', cursive;">
-            ${recipientName} Zia, Bella and Haena 😄
+            ${recipientName}, Zia, Bella and Haena 😄
         </span>
     `;
     
@@ -94,17 +94,16 @@ async function startExchange() {
 }
 
 
-// --- Initialization Logic ---
+// --- Initialization Logic (Restored Music Autoplay) ---
 
 function loadInitialGreeting() {
     
-    // 🎵 Music Autoplay Attempt (moved from startExchange to run on load)
+    // 🎵 Music Autoplay Attempt (runs on page load)
     const music = document.getElementById("bgMusic");
     if (music) {
-        music.volume = 0.5; 
+        music.volume = 0.5; // Set volume to 50%
         music.play().catch(e => {
-            // This is the standard catch for blocked autoplay.
-            // If it fails, the music will automatically start on the user's first interaction (the button click)
+            // Browser blocked autoplay. The music will start on the user's first click (the button)
             console.log("Autoplay blocked. Music will start on button click.");
         });
     }
@@ -128,7 +127,7 @@ function loadInitialGreeting() {
     }
     
     // Personalize the greeting with bold name
-    greetingEl.innerHTML = `Hello ${giverName}! Click the button below to find out who you will be surprising this Christmas!`;
+    greetingEl.innerHTML = `Hello **${giverName}**! Click the button below to discover who you will be buying a gift for!`;
 }
 
 // Run the initialization function when the script loads
