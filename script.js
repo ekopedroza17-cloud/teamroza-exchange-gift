@@ -43,7 +43,7 @@ function displayResult(recipientName) {
     const recipientNameEl = document.getElementById("recipientName");
     recipientNameEl.innerHTML = `
         <span style="font-size: 2.5em; font-weight: bold; color:#A0C22B; font-family: 'Tangerine', cursive;">
-            ${recipientName} and Zia, Bella and Haena 😄
+            ${recipientName} Zia, Bella and Haena 😄
         </span>
     `;
     
@@ -128,7 +128,7 @@ function loadInitialGreeting() {
     }
     
     // Personalize the greeting with bold name
-    greetingEl.innerHTML = `Hello ${giverName}! Click the button below to discover who you will be buying a gift for!`;
+    greetingEl.innerHTML = `Hello ${giverName}! Click the button below to find out who you will be surprising this Christmas!`;
 }
 
 // Run the initialization function when the script loads
